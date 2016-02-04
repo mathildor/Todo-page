@@ -1,176 +1,132 @@
-
 <!DOCTYPE html>
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="webPage.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="events.js"></script>
+  <script>
+  var descripcions={};
+  var homepages={};
+  function readToDo(){
+    //var todo=document.getElementByClass("to-do-box");
+    for(i=0; i<toDo.length; i++){
+      //adding elements for info on events
 
+      var name=document.createElement("h2");
+      name.innerHTML=toDo[i]["name"];
+      var location=document.createElement("h4");
+      var locImg=document.createElement("img");
+      //locImg.setAttribute("src","http://www.clker.com/cliparts/p/R/D/Q/Q/L/map-pin-white-hi.png");
+      location.innerHTML=toDo[i]["location"];
+      location.appendChild(locImg);
+
+      var date= document.createElement("h3");
+      date.innerHTML=toDo[i]["date"];
+
+      var colDiv=document.createElement("div");
+      colDiv.setAttribute("class","col-sm-4");
+
+      var link=document.createElement("a");
+      link.setAttribute("href","");
+      link.setAttribute("href","#");
+      link.setAttribute("onclick","popup('popUpDiv', this)");
+      //Må jeg sette tom id også?
+      var td=document.createElement("div");
+      td.setAttribute("class","to-do-box");
+      td.setAttribute("id",i);
+      td.setAttribute("img-url",toDo[i]["photo"]);
+      td.setAttribute("style", "background-image: url("+toDo[i]["photo"]);
+
+      var text=document.createElement("div");
+      text.setAttribute("class","text");
+
+      text.appendChild(name);
+      text.appendChild(date);
+      text.appendChild(location);
+      // if(date.length>0){
+      //   text.appendChild(location);
+      // }
+
+      td.appendChild(text);
+      link.appendChild(td);
+      colDiv.appendChild(link);
+      var insert=document.getElementById("insert");
+      insert.appendChild(colDiv);
+
+      //save info for later on object
+      //descripcions contains id and descripcion pairs
+      desc=toDo[i]["descripcion"];
+      descripcions[i]=desc;
+
+      homepage=toDo[i]["homepage"];
+      homepages[i]=homepage;
+    }
+  }
+
+  </script>
 </head>
 <body>
-
   <div class="container">
     <div class="row space"></div>
-
-
     <div class="row">
+
       <div class="col-sm-10" name="main page">
         <div class="to-do-boxes">
-
-          <!-- denne koden må oprettes utifra innhold i database, tester bare hvordan det blir seende ut -->
-          <!-- for å vite hvordan det nye elementet skal plasseres må vi kanskje ha en midlertidig variabel, med navn på elementer i raden, og når man når eks 4, oprettes den en ny rad -->
-
           <!-- first row for to-do -->
-          <div class="row">
-
-            <div class="col-sm-4">
-              <a href="#" onclick="popup('popUpDiv')">
-                <div class="to-do-box" style= "background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/ae/2012_Montserrat.jpg')">
-                  <div class="text">
-                    <strong>
-                      <h2 class="name" id=""> Montserrat</h2>
-                      <h3 class="date"> 20/10</h3>
-                      <h4 class="location"><img src="http://www.clker.com/cliparts/p/R/D/Q/Q/L/map-pin-white-hi.png"></img>Montserrat</h4>
-                    </strong>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-sm-4">
-              <a href="" class="" id="">  <!-- for å linke til mer-info? -->
-                <div class="to-do-box" style="background-image: url('http://static1.squarespace.com/static/52f13d83e4b06d419dd079f7/53027b17e4b0c6ad9e424965/5307b610e4b08a6b77de3f09/1393014315299/130209_granja+petitbo_photoshoot_057.jpg')">
-                  <div class="text">
-                    <strong>
-                      <h2 class="name" id=""> Granja petitbo</h2>
-                      <h3 class="date"></h3>
-                      <h4 class="location"><img src="http://www.clker.com/cliparts/p/R/D/Q/Q/L/map-pin-white-hi.png"></img>Passeig de Sant Joan</h4>
-                    </strong>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-sm-4">
-              <a href="" class="" id="">  <!-- for å linke til mer-info? -->
-                <div class="to-do-box" style= "background-image: url('http://restaurantetoyo.com/images/imageplaceholder/imageplaceholder1-toyo.jpg')">
-                  <div class="text">
-                    <strong>
-                      <h2 class="name" id=""> Toyo</h2>
-                      <h3 class="date"> 20/10</h3>
-                      <h4 class="location"><img src="http://www.clker.com/cliparts/p/R/D/Q/Q/L/map-pin-white-hi.png"></img>Carrer de</h4>
-                    </strong>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-sm-4">
-              <a href="" class="" id="">  <!-- for å linke til mer-info? -->
-                <div class="to-do-box" style= "background-image: url('http://www.barcelona-tourist-guide.com/images/int/attractions/tibidabo-amusement-park-6.jpg')">
-                  <div class="text">
-                    <strong>
-                      <h2 class="name" id=""> Tibidabo</h2>
-                      <h3 class="date"> 25/10</h3>
-                      <h4 class="location">Tibidabo</h4>
-                    </strong>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-sm-4">
-              <a href="" class="" id="">  <!-- for å linke til mer-info? -->
-                <div class="to-do-box" style= "background-image: url('https://s-media-cache-ak0.pinimg.com/originals/44/d7/bc/44d7bc9ae0d776b7b8c6c15537c3254a.jpg')">
-                  <div class="text">
-                    <strong>
-                      <h2 class="name" id="">La Vietnamita</h2>
-                      <h3 class="date"></h3>
-                      <h4 class="location"><img src="http://www.clker.com/cliparts/p/R/D/Q/Q/L/map-pin-white-hi.png"></img>Carrer</h4>
-                    </strong>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-sm-4">
-              <a href="" class="" id="">  <!-- for å linke til mer-info? -->
-                <div class="to-do-box" style="background-image: url('http://stylishlyme.com/wp-content/uploads/2013/08/Park-Guell-Entrance-Barcelina.jpg')">
-                  <div class="text">
-                    <strong>
-                      <h2 class="name" id="">Park Guell</h2>
-                      <h4 class="location"><img src="http://www.clker.com/cliparts/p/R/D/Q/Q/L/map-pin-white-hi.png"></img>Gracia</h3>
-                      </strong>
-                    </div>
-                  </div>
-                </a>
-              </div>
-
-              <div class="col-sm-4">
-                <a href="" class="" id="">  <!-- for å linke til mer-info? -->
-                  <div class="to-do-box" style= "background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/ae/2012_Montserrat.jpg')">
-                    <div class="text">
-                      <strong>
-                        <h2 class="name" id=""> Montserrat</h2>
-                        <h3 class="date"> 20/10</h3>
-                        <h4 class="location"><img src="http://www.clker.com/cliparts/p/R/D/Q/Q/L/map-pin-white-hi.png"></img>Montserrat</h4>
-                      </strong>
-                    </div>
-                  </div>
-                </a>
-              </div>
-
-              <div class="col-sm-4">
-                <a href="" class="" id="">  <!-- for å linke til mer-info? -->
-                  <div class="to-do-box" style= "background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/ae/2012_Montserrat.jpg')">
-                    <div class="text">
-                      <strong>
-                        <h2 class="name" id=""> Montserrat</h2>
-                        <h3 class="date"> 20/10</h3>
-                        <h4 class="location">Montserrat</h4>
-                      </strong>
-                    </div>
-                  </div>
-                </a>
-              </div>
-
-              <div class="col-sm-4">
-                <a href="" class="" id="">  <!-- for å linke til mer-info? -->
-                  <div class="to-do-box" style="background-image: url('http://static1.squarespace.com/static/52f13d83e4b06d419dd079f7/53027b17e4b0c6ad9e424965/5307b610e4b08a6b77de3f09/1393014315299/130209_granja+petitbo_photoshoot_057.jpg')">
-                    <div class="text">
-                      <strong>
-                        <h2 class="name" id=""> Granja petitbo</h2>
-                        <h4 class="location">Passeig de Sant Joan</h4>
-                      </strong>
-                    </div>
-                  </div>
-                </a>
-              </div>
-
-              <!--  end to-do row-->
-            </div>
-
+          <div class="row" id="insert">
+            <!--Here all the events go, added from js-->
+          </div>
           <!-- end to-do boxes -->
         </div>
         <!-- end main page -->
       </div>
 
-      <div id="blanket" style="display:none"></div>
+      <div id="Blanket" style="display:none"></div>
+
       <div id="popUpDiv" style="display:none">
         <div id="close">
           <a href="#" onclick="popup('popUpDiv')">x</a>
         </div>
-        <div class="pop-up-container">
-          <img class="pop-up-photo" src="https://upload.wikimedia.org/wikipedia/commons/a/ae/2012_Montserrat.jpg"/>
-          <h2 class="pp-name">Montserrat</h2>
-          <p class="descripcion">Super koselig! .............</p>
-          <p class="pp-date">20/3</p>
-          <p class="location">Montserrat</p>
+
+        <div class="pop-up-container" id="to-do-popup">
+          <img class="pop-up-photo">
+          <h2 class="pp-name"></h2>
+          <p class="descripcion"></p>
+          <p class="pp-date"></p>
+          <p class="pp-location"></p>
+          <a class="pp-homepage">Homepage</a><br>
+          <input type="submit" value="Done" id="eventDone"></input>
+        </div>
+
+      </div>
+
+      <div id="popUpNewEvent" style="display:none">
+        <div id="close">
+          <a href="#" onclick="popup('popUpNewEvent')">x</a>
+        </div>
+        <div class="pop-up-new-event-container">
+          <h1> Create new To Do: </h1>
+          <form>
+            <input type="text" id="name" name="name" placeholder="Name of event"><br>
+            <input type="text" id="photo" name="photo" placeholder="Url for event photo"><br>
+            <input type="text" id="location" name="location" placeholder="Location of event"><br>
+            <input type="text" id="date" name="date" placeholder="Date for event"><br>
+            <textarea name="descripcion" id="descripcion" placeholder="Event descripcion"></textarea><br>
+            <input type="text" name="homepage" id="homepage" placeholder="Url for homepage"><br>
+          </form>
+          <input type="submit" value="Save new event" id="saveEvent"></input>
         </div>
       </div>
 
 
+      <div id="sidebar" class="col-sm-2" name="info">
 
-      <div class="col-sm-2" name="info">
+        <div id="addEvent">
+          <a href="#" onclick="popup('popUpNewEvent')">
+            <img id="addEventPhoto" src="http://cdn.flaticon.com/png/256/52704.png"></img>
+          </a>
+        </div>
+
         <nav role="navigation" class="nav">
           <ul class="nav nav-left">
             <li class="sidebar-link active"><a href=""><b>To do</b></a></li>
@@ -179,66 +135,149 @@
           </ul>
         </nav>
       </div>
-
     </div>
   </div>
+  <script> readToDo();</script>
 </body>
 
 <script>
+
+
 function toggle(div_id) {
-	var el = document.getElementById(div_id);
-	if ( el.style.display == 'none' ) {
+  var el = document.getElementById(div_id);
+  if ( el.style.display == 'none' ) {
     el.style.display = 'block';
   }
-	else {
+  else {
     el.style.display = 'none';
   }
 }
-function blanket_size(popUpDivVar) {
-	if (typeof window.innerWidth != 'undefined') {
-		viewportheight = window.innerHeight;
-	} else {
-		viewportheight = document.documentElement.clientHeight;
-	}
-	if ((viewportheight > document.body.parentNode.scrollHeight) && (viewportheight > document.body.parentNode.clientHeight)) {
-		blanket_height = viewportheight;
-	} else {
-		if (document.body.parentNode.clientHeight > document.body.parentNode.scrollHeight) {
-			blanket_height = document.body.parentNode.clientHeight;
-		} else {
-			blanket_height = document.body.parentNode.scrollHeight;
-		}
-	}
-	var blanket = document.getElementById('blanket');
-	blanket.style.height = blanket_height + 'px';
-	var popUpDiv = document.getElementById(popUpDivVar);
-	popUpDiv_height=blanket_height/2-200;//200 is half popup's height
-	popUpDiv.style.top = popUpDiv_height + 'px';
+function blanket_size(windowActive) {
+  if (typeof window.innerWidth != 'undefined') {
+    viewportheight = window.innerHeight;
+  } else {
+    viewportheight = document.documentElement.clientHeight;
+  }
+  if ((viewportheight > document.body.parentNode.scrollHeight) && (viewportheight > document.body.parentNode.clientHeight)) {
+    blanket_height = viewportheight;
+  } else {
+    if (document.body.parentNode.clientHeight > document.body.parentNode.scrollHeight) {
+      blanket_height = document.body.parentNode.clientHeight;
+    } else {
+      blanket_height = document.body.parentNode.scrollHeight;
+    }
+  }
+  var blanket = document.getElementById('Blanket');
+  blanket.style.height = blanket_height + 'px';
+  var windowAct = document.getElementById(windowActive);
+
+  popUpDiv_height=blanket_height/2-200;//200 is half popup's height
+  windowAct.style.top = popUpDiv_height + 'px';
 }
-function window_pos(popUpDivVar) {
-	if (typeof window.innerWidth != 'undefined') {
-		viewportwidth = window.innerHeight;
-	} else {
-		viewportwidth = document.documentElement.clientHeight;
-	}
-	if ((viewportwidth > document.body.parentNode.scrollWidth) && (viewportwidth > document.body.parentNode.clientWidth)) {
-		window_width = viewportwidth;
-	} else {
-		if (document.body.parentNode.clientWidth > document.body.parentNode.scrollWidth) {
-			window_width = document.body.parentNode.clientWidth;
-		} else {
-			window_width = document.body.parentNode.scrollWidth;
-		}
-	}
-	var popUpDiv = document.getElementById(popUpDivVar);
-	window_width=window_width/2-200;//200 is half popup's width
-	popUpDiv.style.left = window_width + 'px';
+function window_pos(windowActive) {
+  if (typeof window.innerWidth != 'undefined') {
+    viewportwidth = window.innerHeight;
+  } else {
+    viewportwidth = document.documentElement.clientHeight;
+  }
+  if ((viewportwidth > document.body.parentNode.scrollWidth) && (viewportwidth > document.body.parentNode.clientWidth)) {
+    window_width = viewportwidth;
+  } else {
+    if (document.body.parentNode.clientWidth > document.body.parentNode.scrollWidth) {
+      window_width = document.body.parentNode.clientWidth;
+    } else {
+      window_width = document.body.parentNode.scrollWidth;
+    }
+  }
+  var windowAct = document.getElementById(windowActive);
+  window_width=window_width/2-200;//200 is half popup's width
+  windowAct.style.left = window_width + 'px';
 }
-function popup(windowname) {
-	blanket_size(windowname);
-	window_pos(windowname);
-	toggle('blanket');
-	toggle(windowname);
+
+function popup(windowname, element) {
+  //console.log(windowname);
+  blanket_size(windowname);
+  window_pos(windowname);
+  toggle('Blanket');
+  try{
+    makeContent(windowname, element);
+  }catch(error){
+    console.log("closing");
+  }
+
+  toggle(windowname);
+
+  //contentIntPopup(windowname);
 }
+
+function makeContent(windowname, element){
+  if(windowname === "popUpDiv"){
+    console.log(element);
+    var srcn=element.getElementsByClassName('to-do-box')[0].getAttribute("img-url");
+    var img=document.getElementsByClassName("pop-up-photo")[0];
+    img.src=srcn;
+
+    var nameElement=document.getElementsByClassName("pp-name")[0];
+    var name=element.children[0].children[0].children[0].innerHTML;
+    nameElement.innerHTML=name;
+
+    var descElement=document.getElementsByClassName("descripcion")[0];
+    var idNumber=element.children[0].getAttribute("id");
+    descElement.innerHTML=descripcions[idNumber];
+
+    var dateElement=document.getElementsByClassName("pp-date")[0];
+    var date=element.children[0].children[0].children[1].innerHTML;
+    dateElement.innerHTML=date;
+
+    var locationElement=document.getElementsByClassName("pp-location")[0];
+    locationElement.innerHTML=element.children[0].children[0].children[2].children[0].innerHTML;
+
+    var homepageElement=document.getElementsByClassName("pp-homepage")[0];
+    homepageElement.setAttribute("href",homepages[idNumber]);
+
+  }else{//new event
+
+  }
+}
+
+document.getElementById("saveEvent").onclick = function(){
+  console.log("in save event");
+  var name=document.getElementById("name").value;
+  var date=document.getElementById("date").value;
+  var location=document.getElementById("location").value;
+  var descripcion=document.getElementById("descripcion").value;
+  var homepage=document.getElementById('homepage').value;
+
+  if(name.length<1){
+    alert("Missing info");
+  }else if(date.length<1){
+    alert("Missing info");
+  }else if(descripcion.length<1){
+    alert("Missing info");
+  }else{
+    console.log(name+", "+date+", "+location+", "+descripcion+", "+homepage);
+    //save to toDo:
+    eventObj={
+      "name": name,
+      "photo": photo,
+      "location": location,
+      "date": date,
+      "descripcion": descripcion,
+      "homepage": homepage
+    };
+    toDo.push(eventObj);
+    readToDo();
+    toggle('Blanket');
+    toggle('popUpNewEvent');
+  }
+}
+
+document.getElementById('eventDone').onclick=function(){
+
+  //Delete from toDo
+  //Add to done
+}
+
 </script>
+
 </html>
